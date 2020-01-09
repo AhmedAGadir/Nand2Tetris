@@ -1,0 +1,16 @@
+/**
+ * Exclusive-or gate:
+ * out = not (a == b)
+ *
+ * XOR(A,B) = (A+B) * !(A*B)
+ */
+
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Nand(a=a, b=b, out=aNandB);
+    Or(a=a, b=b, out=aOrB);
+    And(a=aNandB, b=aOrB, out=out);
+}
